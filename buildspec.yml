@@ -1,5 +1,5 @@
 version: 0.2
-
+ 
 phases:
   pre_build:
     commands:
@@ -9,15 +9,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t g2-user-codepipline:user .
-      - docker tag g2-user-codepipline:user 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g2-user-codepipline:user
+      - docker build -t g2-userprofile-cp:userprofile .
+      - docker tag g2-userprofile-cp:userprofile 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g2-userprofile-cp:userprofile
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g2-user-codepipline:user
+      - docker push 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g2-userprofile-cp:userprofile
       - echo Writing image definitions file...
-      - printf '[{"name":"users-container","imageUri":"%s"}]' 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g2-user-codepipline:user > imagedefinitions.json
+      - printf '[{"name":"userprofile-container","imageUri":"%s"}]' 124355663661.dkr.ecr.ap-northeast-3.amazonaws.com/g2-userprofile-cp:userprofile > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
